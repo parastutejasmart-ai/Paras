@@ -1,0 +1,1 @@
+- [OpenAPI and Zod compatibility](openapi-codegen-zod.md) — keep generated schemas on the installed Zod feature set when adding format constraints.
