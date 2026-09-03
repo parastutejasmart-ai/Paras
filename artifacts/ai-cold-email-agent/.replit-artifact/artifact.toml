@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "AI Cold Email Agent"
+description = "A private outreach workspace that imports leads, generates grounded cold-email drafts with AI, and sends only explicitly approved messages through Gmail while recording delivery history."
+version = "1.0.0"
+id = "artifacts/ai-cold-email-agent"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19206
+
+[services.development]
+run = "pnpm --filter @workspace/ai-cold-email-agent run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/ai-cold-email-agent", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/ai-cold-email-agent/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19206"
+BASE_PATH = "/"
